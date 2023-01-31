@@ -14,7 +14,7 @@ module.exports.register = async (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password,
-                mobilr: req.body.mobile,
+                mobile: req.body.mobile,
                 address: req.body.address
             })
 
@@ -83,7 +83,7 @@ module.exports.userAuth = ((req, res) => {
     })
 });
 
-// Logout
+// Logout  
 module.exports.userLogout = ((req, res) => {
     res.cookie("user", 'token', { maxAge: 1 });
     res.redirect('/');

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     mobile: {
-        type: String
+        type: Number
     },
     address: {
         type: String

@@ -44,10 +44,6 @@ module.exports.getRegister = async (req, res) => {      // Register Page
         const user = await User.findOne({ _id: verifyToken._id });
 
         if (user) {
-            // res.render('userSecret', {
-            //     name: user.name,
-            //     email: user.email
-            // });
             res.redirect('userSecret');
         } else {
             res.redirect('register');
