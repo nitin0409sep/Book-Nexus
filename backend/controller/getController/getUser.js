@@ -3,16 +3,37 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../../models/Admin');
 
 const User = require('../../models/User');
+const Books = require('../../models/Books');
+const Category = require('../../models/Category');
+const Author = require('../../models/Author');
+const IssueBook = require('../../models/IssueBook');
+
 
 
 module.exports.getHome = async (req, res) => {                             // Home Page
     try {
+
+        // Count Author, Books, Category & User
+        const books = await Books.find().count();
+        const category = await Category.find().count();
+        const author = await Author.find().count();
+        const user = await User.find().count();
+        const issueBook = await IssueBook.find().count();
+
         if (req.cookies.admin) {
             const adminToken = req.cookies.admin;
             const adminVerifyToken = jwt.verify(adminToken, "hellomynameisnitinvermaiamamerndeveloper");
             const admin = await Admin.findOne({ _id: adminVerifyToken._id })
             if (admin) {
-                res.redirect("adminSecret");
+                res.render("admin-dashboard", {
+                    name: admin.name,
+                    email: admin.email,
+                    books: books,
+                    category: category,
+                    author: author,
+                    user: user,
+                    issueBook: issueBook
+                });
             } else {
                 res.redirect('/');
             }
@@ -21,7 +42,7 @@ module.exports.getHome = async (req, res) => {                             // Ho
             const userVerifyToken = jwt.verify(userToken, "jwtnewkeygeneratedbymrnitinvermathemsjrjsuejduejekejs");
             const user = await User.findOne({ _id: userVerifyToken._id });
             if (user) {
-                res.redirect("userSecret");
+                res.redirect("user-dashboard");
             } else {
                 res.redirect('/');
             }
@@ -44,7 +65,7 @@ module.exports.getRegister = async (req, res) => {      // Register Page
         const user = await User.findOne({ _id: verifyToken._id });
 
         if (user) {
-            res.redirect('userSecret');
+            res.redirect('user-dashboard');
         } else {
             res.redirect('register');
         }
@@ -56,5 +77,5 @@ module.exports.getRegister = async (req, res) => {      // Register Page
 
 // User already Logged In
 module.exports.getUserLogin = async (req, res) => {    // Login Page
-    res.redirect('userSecret');
+    res.redirect('user-dashboard');
 }

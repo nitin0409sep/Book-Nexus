@@ -1,33 +1,33 @@
-// User
-const User = require('../models/User');
+// Admin
+const Admin = require('../models/Admin');
 
 const bcrypt = require('bcryptjs');
- 
+
 // Update Profile
 module.exports.updatePassword = async (req, res) => {
-    const user = req.userData;
+    const admin = req.adminData;
 
     res.render('change-password', {
-        name: user.name,
-        email: user.email
+        name: admin.name,
+        email: admin.email
     });
 }
 
 module.exports.changePassword = async (req, res) => {
     try {
-        const user = req.userData;
+        const admin = req.adminData;
 
-        const data = await User.findOne({ _id: user._id });
+        const data = await Admin.findOne({ _id: admin._id });
 
         const isMatched = await bcrypt.compare(req.body.oldPassword, data.password);
 
         if (isMatched) {
             const newPassword = await bcrypt.hash(req.body.newPassword, 10);
-            const userPassword = await User.findByIdAndUpdate({ _id: data._id }, { $set: { password: newPassword } }, { value: true });
+            const adminPassword = await Admin.findByIdAndUpdate({ _id: data._id }, { $set: { password: newPassword } }, { value: true });
 
-            res.cookie("user", 'token', { maxAge: 1 });
+            res.cookie("admin", 'token', { maxAge: 1 });
 
-            res.redirect('userLogin');
+            res.redirect('adminLogin');
         } else {
             throw Error("Invalid Old Password");
         }

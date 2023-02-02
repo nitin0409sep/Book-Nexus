@@ -7,7 +7,7 @@ const userAuth = async (req, res, next) => {
 
     try {
         if (req.cookies.admin) {   // Admin already logged in but want to access, userLogin page 
-            res.redirect('adminSecret');
+            res.redirect('admin-dashboard');
         } else {
             const token = req.cookies.user;
 

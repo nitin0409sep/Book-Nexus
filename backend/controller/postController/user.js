@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 module.exports.register = async (req, res) => {
     try {
         if (req.cookies.user) {  // User already logged in but want to access, adminLogin page 
-            res.redirect('userSecret');
+            res.redirect('user-dashboard');
         } else {
             // Getting Data from Form
             const data = new User({
@@ -29,7 +29,7 @@ module.exports.register = async (req, res) => {
             // Saving to DB
             const userData = await data.save();
 
-            res.render('userSecret', {
+            res.render('user-dashboard', {
                 name: userData.name,
                 email: userData.email
             })
@@ -43,7 +43,7 @@ module.exports.register = async (req, res) => {
 module.exports.userLogin = async (req, res) => {
     try {
         if (req.cookies.admin) {  // Admin already logged in but want to access, userLogin page 
-            res.redirect('userSecret');
+            res.redirect('user-dashboard');
         } else {
             const email = req.body.email;
             const password = req.body.password;
@@ -61,7 +61,7 @@ module.exports.userLogin = async (req, res) => {
                     expires: new Date(Date.now() + 300000)
                 });
 
-                res.render('userSecret', {
+                res.render('user-dashboard', {
                     name: user.name,
                     email: user.email
                 });
@@ -77,7 +77,7 @@ module.exports.userLogin = async (req, res) => {
 // User Secret Pages
 module.exports.userAuth = ((req, res) => {
     const data = req.userData;  // Accessing data from previous middleware
-    res.render('userSecret', {
+    res.render('user-dashboard', {
         name: data.name,
         email: data.email
     })

@@ -15,6 +15,9 @@ const adminSchema = new mongoose.Schema({
     },
     password: {
         type: String
+    },
+    mobile: {
+        type: String
     }
 })
 

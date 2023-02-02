@@ -38,7 +38,9 @@ const route = require('../routes/router');
 const staticPath = path.join(__dirname + '../../../frontend/public');
 
 // Views Directory Path
-const viewsPath = path.join(__dirname + '../../../frontend/temp/views');
+const adminViewsPath = path.join(__dirname + '../../../frontend/temp/admins')
+const userViewsPath = path.join(__dirname + '../../../frontend/temp/users')
+const commonViewsPath = path.join(__dirname + '../../../frontend/temp/common')
 
 // Partials Directory Path
 const partialsPath = path.join(__dirname + '../../../frontend/temp/partials');
@@ -50,7 +52,11 @@ app.use('/public', express.static(staticPath));
 app.set('view engine', 'hbs');
 
 // Set view engine path
-app.set('views', viewsPath);
+app.set('views', [
+    adminViewsPath,
+    userViewsPath,
+    commonViewsPath
+]);
 
 // Partials
 hbs.registerPartials(partialsPath);

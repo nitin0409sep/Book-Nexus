@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-
+ 
 const Admin = require('../models/Admin');
 
 // JWT Expires or Not present than Logout
 const adminAuth = async (req, res, next) => {
     try {
         if (req.cookies.user) {  // User already logged in but want to access, adminLogin page 
-            res.redirect('userSecret');
+            res.redirect('user-dashboard');
         } else {
             const token = req.cookies.admin;
 
