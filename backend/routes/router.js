@@ -20,7 +20,7 @@ const userAuth = require('../authentication/userAuth');
 const userUtilityViewProfile = require('../user-utility/view-profile');
 const userUtilityEditProfile = require('../user-utility/edit-profile');
 const userUtilityUpdatePassword = require('../user-utility/change-password');
-
+const userViewIssuedBooks = require('../user-utility/user-view-issued-books');
 
 // Admin Utility
 const adminUtilityViewProfile = require('../admin-utility/view-profile');
@@ -59,15 +59,15 @@ router.get('/userLogout', userAuth, userController.userLogout);      // User
 
 /* User Utility */
 // View Profile
-router.get('/view-profile', userAuth, userUtilityViewProfile.viewProfile); // User
+router.get('/user-view-profile', userAuth, userUtilityViewProfile.viewProfile); // User
 
 // Update Profile
-router.get('/edit-profile', userAuth, userUtilityEditProfile.editProfile);  // User
-router.post('/update-profile', userAuth, userUtilityEditProfile.updateProfile);  // User
+router.get('/user-edit-profile', userAuth, userUtilityEditProfile.editProfile);  // User
+router.post('/user-update-profile', userAuth, userUtilityEditProfile.updateProfile);  // User
 
 // Update Password
-router.get('/change-password', userAuth, userUtilityUpdatePassword.updatePassword); // User
-router.post('/updatePassword', userAuth, userUtilityUpdatePassword.changePassword); // User
+router.get('/user-change-password', userAuth, userUtilityUpdatePassword.updatePassword); // User
+router.post('/user-update-password', userAuth, userUtilityUpdatePassword.changePassword); // User
 
 
 /* Admin Utility */
@@ -125,12 +125,16 @@ router.post('/edit-author', adminAuth, adminManageAuthor.postAdminEditAuthor);
 // Delete Author
 router.get('/delete-author', adminAuth, adminManageAuthor.getAdminDeleteAuthor);
 
-// Issue Book
+// Admin Issue Book 
 router.get('/issue-book', adminAuth, adminIssueBook.issueBook);
 router.post('/issue-book', adminAuth, adminIssueBook.postIssueBook);
+router.get('/admin-view-issued-book', adminAuth, adminIssueBook.adminViewIssuedBook);
+
+// User Issued Books
+router.get('/user-view-issued-books', userAuth, userViewIssuedBooks.getUserViewIssuedBooks);
 
 
-// Invalid Route
+// Invalid Route    
 router.get('**', (req, res) => {
     res.redirect('/');
 })

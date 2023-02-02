@@ -85,6 +85,26 @@ module.exports.postIssueBook = async (req, res) => {
     }
 }
 
+
+module.exports.adminViewIssuedBook = async (req, res) => {
+    const admin = req.adminData;
+    try {
+
+        const data = await IssueBook.find();
+
+        res.render('admin-view-issued-book', {
+            name: admin.name,
+            email: admin.email,
+            data: data
+        });
+    } catch (err) {
+        res.redirect('admin-dashboard', {
+            name: admin.name,
+            email: admin.email,
+        });
+    }
+}
+
 /*
         // Already present in DB then add it's ID only
         const bookdata = await Book.findOne({ book_name: bookName });
@@ -130,3 +150,4 @@ module.exports.postIssueBook = async (req, res) => {
             });
         }
 */
+

@@ -1,14 +1,12 @@
 {{>header}}
 
-
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
 
         <!-- Header -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="user-dashboard">Library Management System (LMS)</a>
+            <a class="navbar-brand" href="user-dashboard">User Dasdboard</a>
         </div>
 
         <!-- Display in navbar, User Name & Email Once Logged In -->
@@ -31,7 +29,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/userLogout">Logout</a>
+                <a class="nav-link" href="userLogout">Logout</a>
             </li>
         </ul>
     </div>
@@ -48,22 +46,36 @@
 
 
 <div class="row">
-    {{!-- Cards --}}
-    <div class="col-md-3">
-        {{!-- Issued Books --}}
-        <div class="card bg-light" style="width:300px">
-            <div class="card-header">Issued Books</div>
-            <div class="card-body">
-                <p class="card-text">Number of total Issued Books: {{this.user}}</p>
-                {{!--targte="_blank"-:Open link in new tab --}}
-                <a href="user-view-issued-books" class="btn btn-primary" target="_blank">View Issued Books</a>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form action="user-update-profile" method="post">
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input type="text" class="form-control" value="{{name}}" name="name">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="name">Email: </label>
+                <input type="text" class="form-control" value="{{email}}" name="email">
+            </div>
+            <div class="form-group">
+                <label for="name">Student ID: </label>
+                <input type="number" class="form-control" value="{{studentID}}" name="studentID">
+            </div>
+            <div class="form-group">
+                <label for="name">Mobile: </label>
+                <input type="number" class="form-control" value="{{mobile}}" name="mobile">
+            </div>
+            <div class="form-group">
+                <label for="name">Address: </label>
+                <textarea cols="40" rows="4" class="form-control" name="address">{{address}}</textarea>
+            </div>
+
+            <!-- Update Button -->
+            <button class="btn btn-primary" name="update" type="submit">Update Profile</button>
+        </form>
     </div>
+    <div class="col-md-4"></div>
 </div>
-
-
-
 
 
 <script type="text/javascript">
@@ -72,6 +84,5 @@
     }
 
     setTimeout("preventBack()", 0);
+    let myVar = window.location.href;
 </script>
-
-{{footer}}

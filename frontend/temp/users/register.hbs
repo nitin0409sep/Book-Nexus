@@ -45,19 +45,25 @@
             <!-- Full Name -->
             <div class="form-group">
                 <label for="name">Full Name:</label>
-                <input type="text" name="name" class="form-control" required>
+                <input type="text" name="name" class="form-control" required="true">
             </div>
 
             <!-- Email ID -->
             <div class="form-group">
                 <label for="name">Email ID:</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" required="true">
             </div>
 
             <!-- Password -->
             <div class="form-group">
                 <label for="name">Password:</label>
                 <input type="password" name="password" class="form-control" required="true">
+            </div>
+
+            <!-- Student ID -->
+            <div class="form-group">
+                <label for="name">Student ID:</label>
+                <input type="number" name="studentID" class="form-control" required="true">
             </div>
 
             <!-- Mobile Number -->
@@ -69,7 +75,7 @@
             <!-- Address -->
             <div class="form-group">
                 <label for="address">Address:</label>
-                <textarea name="address" cols="40" rows="3" class="form-control"></textarea>
+                <textarea name="address" cols="40" rows="3" class="form-control" required="true"></textarea>
             </div>
 
             <!-- Button -->
@@ -79,7 +85,7 @@
 </div>
 
 
-{{!-- 
+{{!--
 <script type="text/javascript">
     function preventBack() {
         window.history.forward();

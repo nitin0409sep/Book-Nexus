@@ -32,7 +32,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="adminLogout">Logout</a>
+                    <a class="nav-link" href="/adminLogout">Logout</a>
                 </li>
             </ul>
         </div>
@@ -65,7 +65,7 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
                     <div class="dropdown-menu">
                         <a href="add-new-category" class="dropdown-item">Add New Category</a>
-                        <a href="manage-category" class="dropdown-item">Manage Category</a>
+                        <a href="manage-book" class="dropdown-item">Manage Category</a>
                     </div>
                 </li>
 
@@ -74,7 +74,7 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">Author</a>
                     <div class="dropdown-menu">
                         <a href="add-new-author" class="dropdown-item">Add New Author</a>
-                        <a href="manage-author" class="dropdown-item">Manage Author's</a>
+                        <a href="manage-book" class="dropdown-item">Manage Author's</a>
                     </div>
                 </li>
 
@@ -96,74 +96,28 @@
         </marquee>
     </span>
 
-
     <div class="row">
-        {{!-- Cards --}}
-        <div class="col-md-3">
-            {{!-- Registered User --}}
-            <div class="card bg-light" style="width:300px">
-                <div class="card-header">Registered User</div>
-                <div class="card-body">
-                    <p class="card-text">Number of total users: {{this.user}}</p>
-                    {{!--targte="_blank"-:Open link in new tab --}}
-                    <a href="admin-view-registered-user" class="btn btn-danger" target="_blank">View Registered
-                        User</a>
-                </div>
-            </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <table class="table-bordered" width="900px" style="text-align:center">
+                <tr>
+                    <th>Book Name</th>
+                    <th>Student ID</th>
+                    <th>Book Number</th>
+                </tr>
+                {{#each data}} {{!-- hbs Iteration Method just like Foreach Loop --}}
+                <tr>
+                    <td>{{this.book_name}}</td>
+                    <td>{{this.student_id}}</td>
+                    <td>{{this.book_number}}</td>
+                </tr>
+                {{/each}}
+            </table>
 
         </div>
-
-        {{!-- Registered Books --}}
-        <div class="col-md-3">
-            <div class="card bg-light" style="width:300px">
-                <div class="card-header">Registered Books</div>
-                <div class="card-body">
-                    <p class="card-text">Number of available Books: {{this.books}}</p>
-                    {{!--targte="_blank"-:Open link in new tab --}}
-                    <a href="admin-view-registered-books" class="btn btn-success" target="_blank">View Registered
-                        Books</a>
-                </div>
-            </div>
-
-        </div>
-
-        {{!-- Registered Category --}}
-        <div class="col-md-3">
-            <div class="card bg-light" style="width:300px">
-                <div class="card-header">Registered Category</div>
-                <div class="card-body">
-                    <p class="card-text">Number of Book's Category: {{this.category}}</p>
-                    {{!--targte="_blank"-:Open link in new tab --}}
-                    <a href="admin-view-registered-category" class="btn btn-primary" target="_blank">View Category</a>
-                </div>
-            </div>
-        </div>
-
-        {{!-- Registered Authors --}}
-        <div class="col-md-3">
-            <div class="card bg-light" style="width:300px">
-                <div class="card-header">Registered Author's</div>
-                <div class="card-body">
-                    <p class="card-text">Number of available Author's: {{this.author}}</p>
-                    {{!--targte="_blank"-:Open link in new tab --}}
-                    <a href="admin-view-registered-author" class="btn btn-secondary" target="_blank">View Author's</a>
-                </div>
-            </div>
-        </div>
-
-        {{!-- Issued Book's --}}
-        <div class="col-md-3">
-            <div class="card bg-light" style="width:300px">
-                <div class="card-header">Issued Book's</div>
-                <div class="card-body">
-                    <p class="card-text">Number of issued Book's: {{this.issueBook}}</p>
-                    {{!--targte="_blank"-:Open link in new tab --}}
-                    <a href="admin-view-issued-book" class="btn btn-secondary" target="_blank">View Issued Book's</a>
-                </div>
-            </div>
-        </div>
+        <div class="col-md-2"></div>
     </div>
-
 </body>
 
 

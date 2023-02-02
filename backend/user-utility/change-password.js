@@ -2,12 +2,12 @@
 const User = require('../models/User');
 
 const bcrypt = require('bcryptjs');
- 
+
 // Update Profile
 module.exports.updatePassword = async (req, res) => {
     const user = req.userData;
 
-    res.render('change-password', {
+    res.render('user-change-password', {
         name: user.name,
         email: user.email
     });
@@ -32,6 +32,6 @@ module.exports.changePassword = async (req, res) => {
             throw Error("Invalid Old Password");
         }
     } catch (err) {
-        res.redirect('change-password');
+        res.redirect('user-change-password');
     }
 }

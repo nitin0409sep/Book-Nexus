@@ -10,6 +10,8 @@ const IssueBook = require('../../models/IssueBook');
 
 module.exports.getAdminLogin = async (req, res) => {       // Admin Login Page
 
+    const admin = req.adminData;
+
     // Count Author, Books, Category & User
     const books = await Books.find().count();
     const category = await Category.find().count();
@@ -26,4 +28,4 @@ module.exports.getAdminLogin = async (req, res) => {       // Admin Login Page
         user: user,
         issueBook: issueBook
     });
-}  
+}   

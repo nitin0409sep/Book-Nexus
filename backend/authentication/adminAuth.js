@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
- 
+
 const Admin = require('../models/Admin');
 
 // JWT Expires or Not present than Logout

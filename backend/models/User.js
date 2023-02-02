@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String
     },
+    studentID: {
+        type: String
+    },
     mobile: {
         type: Number
     },
