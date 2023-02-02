@@ -91,7 +91,6 @@ module.exports.adminViewIssuedBook = async (req, res) => {
     try {
 
         const data = await IssueBook.find();
-
         res.render('admin-view-issued-book', {
             name: admin.name,
             email: admin.email,
